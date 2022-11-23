@@ -2,6 +2,9 @@
 #include"vector.hpp"
 #include"queue.hpp"
 #include"stack.hpp"
+#include"list.hpp"
+#include"map.hpp"
+#include"set.hpp"
 using namespace bjy;
 using std::cout;
 using std::endl;
@@ -62,5 +65,43 @@ int main_test()
 	}
 	cout << endl;
 
+	return 0;
+}
+int main_list()
+{
+	vector<int>v;
+	for (size_t i = 0; i < 10; ++i) { v.push_back(i + 1); }
+	const list<int> lt(v.begin(),v.end());
+	for (list<int>::const_iterator it = lt.begin(); it != lt.end(); ++it) {
+		cout << *it << " ";
+	}
+	cout << endl;
+	return 0;
+}
+int main_map() {
+	size_t N = 10;
+	srand((unsigned)time(NULL));
+	map<int, int> t;
+	for (size_t i = 0; i < N; ++i) {
+		int x = rand();
+		//cout << "insert:" << x << ":" << i << endl;
+		t.insert(make_pair(x, i));
+	}
+	for (map<int, int>::iterator it = t.begin(); it != t.end(); ++it) {
+		cout << (*it).first << " " << (*it).second << endl;
+	}
+	return 0;
+}
+int main/*_set*/()
+{
+	set<int> s;
+	s.insert(5);
+	s.insert(3);
+	s.insert(1);
+	s.insert(2);
+	s.insert(4);
+	for (set<int>::iterator it = s.begin(); it != s.end(); ++it) {
+		cout << *it << endl;
+	}
 	return 0;
 }

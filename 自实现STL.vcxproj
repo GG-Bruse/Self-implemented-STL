@@ -140,8 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="list.hpp" />
+    <ClInclude Include="map.hpp" />
     <ClInclude Include="queue.hpp" />
+    <ClInclude Include="RedBlackTree.hpp" />
     <ClInclude Include="reverse_iterator.h" />
+    <ClInclude Include="set.hpp" />
     <ClInclude Include="stack.hpp" />
     <ClInclude Include="string.h" />
     <ClInclude Include="vector.hpp" />
