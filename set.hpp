@@ -15,7 +15,7 @@ namespace bjy
 		iterator begin() { return _tree.begin(); }
 		iterator end() { return _tree.end(); }
 
-		bool insert(const Key& key) {
+		pair<iterator, bool> insert(const Key& key) {
 			return _tree.insert(key);
 		}
 	private:

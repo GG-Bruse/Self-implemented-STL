@@ -1,5 +1,4 @@
 #pragma once
-#define _CRT_SECURE_NO_WARNINGS
 #define NEW 1
 #include<iostream>
 #include<algorithm>

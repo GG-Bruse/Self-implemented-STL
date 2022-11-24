@@ -1,11 +1,11 @@
 #pragma once
-
 #define _CRT_SECURE_NO_WARNINGS
 #define NEW 1
 #include<iostream>
 #include<algorithm>
 #include<cstring>
 #include<cassert>
+#include<cstdlib>
 using std::swap;
 using std::ostream;
 using std::istream;

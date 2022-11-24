@@ -38,9 +38,45 @@ public:
 		return _node == s._node;
 	}
 	self& operator++() {
+		if (_node->_right != nullptr) {
+			//右子树的最左结点
+			TreeNode* cur = _node->_right;
+			while (cur->_left != nullptr) {
+				cur = cur->_left;
+			}
+			_node = cur;
+		}
+		else {
+			//找到祖先中孩子不是其右孩子的结点
+			TreeNode* parent = _node->_parent;
+			TreeNode* cur = _node;
+			while (parent && cur == parent->_right) {
+				cur = cur->_parent;
+				parent = parent->_parent;
+			}
+			_node = parent;
+		}
 		return *this;
 	}
 	self& operator--() {
+		if (_node->_left != nullptr) {
+			//左子树的最右结点
+			TreeNode* cur = _node->_left;
+			while (cur->_right != nullptr) {
+				cur = cur->_right;
+			}
+			_node = cur;
+		}
+		else {
+			//找到祖先中孩子不是其左孩子的结点
+			TreeNode* parent = _node->_parent;
+			TreeNode* cur = _node;
+			while (parent && cur == parent->_left) {
+				cur = cur->_parent;
+				parent = parent->_parent;
+			}
+			_node = parent;
+		}
 		return *this;
 	}
 private:
@@ -64,13 +100,13 @@ public:
 		return iterator(nullptr);
 	}
 
-	bool insert(const T& data) {
+	pair<iterator,bool> insert(const T& data) {
 		KeyofT kot;
 
 		if (_root == nullptr) {
 			_root = new TreeNode(data);
 			_root->_color = BLACK;
-			return true;
+			return make_pair(iterator(_root),true);
 		}
 
 		TreeNode* parent = nullptr;
@@ -84,7 +120,7 @@ public:
 				parent = cur;
 				cur = cur->_left;
 			}
-			else return false;
+			else return make_pair(iterator(cur),false);
 		}
 		cur = new TreeNode(data);
 		cur->_color = RED;
@@ -95,6 +131,7 @@ public:
 			parent->_left = cur;
 		}
 		cur->_parent = parent;
+		TreeNode* remain = cur;
 
 		while (parent && parent->_color == RED)
 		{
@@ -154,7 +191,7 @@ public:
 			}
 		}
 		_root->_color = BLACK;
-		return true;
+		return make_pair(iterator(remain),true);
 	}
 
 	void inorder() {
