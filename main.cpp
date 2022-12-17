@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include"string.h"
 #include"vector.hpp"
@@ -7,6 +7,8 @@
 #include"list.hpp"
 #include"map.hpp"
 #include"set.hpp"
+#include "unordered_map.hpp"
+#include "unordered_set.hpp"
 using namespace bjy;
 using std::cout;
 using std::endl;
@@ -94,15 +96,15 @@ int main_map1() {
 	}
 	return 0;
 }
-int main/*_map2*/()
+int main_map2()
 {
-	string arr[] = { "Æ»¹û", "Î÷¹Ï", "Æ»¹û", "Î÷¹Ï", "Æ»¹û", "Æ»¹û", "Î÷¹Ï", "Æ»¹û", "Ïã½¶", "Æ»¹û", "Ïã½¶" };
+	string arr[] = { "è‹¹æœ", "è¥¿ç“œ", "è‹¹æœ", "è¥¿ç“œ", "è‹¹æœ", "è‹¹æœ", "è¥¿ç“œ", "è‹¹æœ", "é¦™è•‰", "è‹¹æœ", "é¦™è•‰" };
 
 	map<string, int> countMap;
 	for (auto& str : arr)
 	{
-		// 1¡¢str²»ÔÚcountMapÖĞ£¬²åÈëpair(str, int()),È»ºóÔÚ¶Ô·µ»Ø´ÎÊı++
-		// 2¡¢strÔÚcountMapÖĞ£¬·µ»Øvalue(´ÎÊı)µÄÒıÓÃ£¬´ÎÊı++;
+		// 1ã€strä¸åœ¨countMapä¸­ï¼Œæ’å…¥pair(str, int()),ç„¶ååœ¨å¯¹è¿”å›æ¬¡æ•°++
+		// 2ã€stråœ¨countMapä¸­ï¼Œè¿”å›value(æ¬¡æ•°)çš„å¼•ç”¨ï¼Œæ¬¡æ•°++;
 		countMap[str]++;
 	}
 
@@ -117,6 +119,7 @@ int main/*_map2*/()
 	{
 		cout << kv.first << ":" << kv.second << endl;
 	}
+	return 0;
 }
 int main_set()
 {
@@ -129,5 +132,63 @@ int main_set()
 	for (set<int>::iterator it = s.begin(); it != s.end(); ++it) {
 		cout << *it << endl;
 	}
+	return 0;
+}
+
+
+
+/*************         unordered_set     unordered_map           ***/
+void test_map()
+{
+	unordered_map<string, string> dict;
+	dict.insert(make_pair("sort", "æ’åº"));
+	dict.insert(make_pair("string", "å­—ç¬¦ä¸²"));
+	dict.insert(make_pair("left", "å·¦è¾¹"));
+
+	for (unordered_map<string, string>::iterator it = dict.begin(); it != dict.end(); ++it){
+		cout << it->first << ":" << it->second << endl;
+	}
+	cout << endl;
+
+	unordered_map<string, int> countMap;
+	string arr[] = { "è‹¹æœ", "è¥¿ç“œ", "è‹¹æœ", "è¥¿ç“œ", "è‹¹æœ", "è‹¹æœ", "è¥¿ç“œ", "è‹¹æœ", "é¦™è•‰", "è‹¹æœ", "é¦™è•‰" };
+	for (auto e : arr){
+		countMap[e]++;
+	}
+
+	for (auto& kv : countMap){
+		cout << kv.first << ":" << kv.second << endl;
+	}
+	countMap.erase("è¥¿ç“œ");
+	cout << endl;
+	for (auto& kv : countMap) {
+		cout << kv.first << ":" << kv.second << endl;
+	}
+}
+void test_set()
+{
+	unordered_set<int> s;
+	s.insert(2);
+	s.insert(3);
+	s.insert(1);
+	s.insert(2);
+	s.insert(5);
+
+	for (unordered_set<int>::iterator it = s.begin(); it != s.end(); ++it){
+		cout << *it << " ";
+	}
+	cout << endl;
+
+	s.erase(2);
+
+	for (unordered_set<int>::iterator it = s.begin(); it != s.end(); ++it) {
+		cout << *it << " ";
+	}
+	cout << endl;
+}
+int main()
+{
+	test_map();
+	test_set();
 	return 0;
 }
