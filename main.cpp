@@ -9,6 +9,7 @@
 #include"set.hpp"
 #include "unordered_map.hpp"
 #include "unordered_set.hpp"
+#include "bitset.h"
 using namespace bjy;
 using std::cout;
 using std::endl;
@@ -186,9 +187,40 @@ void test_set()
 	}
 	cout << endl;
 }
-int main()
+int main_map_set()
 {
 	test_map();
 	test_set();
+	return 0;
+}
+
+
+
+
+
+void test_bit_set()
+{
+	bitset<100> bs;
+	bs.set(8);
+	bs.set(9);
+	bs.set(20);
+
+	cout << bs.test(8) << endl;
+	cout << bs.test(9) << endl;
+	cout << bs.test(20) << endl;
+
+	bs.reset(8);
+	bs.reset(9);
+	bs.reset(20);
+
+	cout << bs.test(8) << endl;
+	cout << bs.test(9) << endl;
+	cout << bs.test(20) << endl;
+
+	//bitset<UINT_MAX> bss;
+}
+int main()
+{
+	test_bit_set();
 	return 0;
 }
