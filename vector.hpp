@@ -2,9 +2,11 @@
 #define NEW 1
 #include<iostream>
 #include<algorithm>
+#include<initializer_list>
 #include<cassert>
 #include"reverse_iterator.h"
 using std::swap;
+using std::initializer_list;
 namespace bjy
 {
 	template<class T>
@@ -29,7 +31,7 @@ namespace bjy
 		const_reverse_iterator rbegin()const { return const_reverse_iterator(end()); }
 		const_reverse_iterator rend()const { return const_reverse_iterator(begin()); }
 
-		vector() :_start(nullptr), _finish(nullptr), _end_of_storage(nullptr) {}
+		vector() :_start(nullptr), _finish(nullptr), _end_of_storage(nullptr) {
 #ifdef OLD1
 		vector(const vector<int>& temp) {
 			_start = new T[temp.capacity()];
@@ -56,6 +58,13 @@ namespace bjy
 			swap(worker);
 		}
 #endif
+		vector(initializer_list<T> il) :_start(nullptr), _finish(nullptr), _end_of_storage(nullptr) {
+			reserve(il.size());
+			for (auto& e : il) {
+				push_back(e);
+			}
+		}
+
 		vector(int n, const_reference val = T()) {
 			reserve(n);
 			for (int i = 0; i < n; ++i) push_back(val);
